@@ -1,0 +1,14 @@
+# Editor / Cursor (local only)
+.cursor/
+
+# macOS
+.DS_Store
+
+# Duplicate Dropbox archive (contents live in assets/haus-fotos/)
+assets/kirkenes_bilder_plaene.zip
+
+# Secrets
+.env
+.env.*
+*.pem
+credentials.json
