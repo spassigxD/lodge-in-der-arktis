@@ -1,11 +1,20 @@
 # Auftrags- und Ideenprotokoll
 
+## 2026-06-04 - Custom Domain arcticlodge.net (GitHub Pages)
+
+- Nutzer hat Squarespace-DNS und GitHub-Pages-Custom-Domain eingerichtet („erledigt“).
+- Repo: `CNAME` im Root mit `arcticlodge.net` (eine Zeile, kein `https://`); README und dieses Protokoll aktualisiert.
+- **DNS (Squarespace):** Apex `arcticlodge.net` → A auf GitHub Pages (`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`); `www` → CNAME auf `spassigxD.github.io` (oder Apex, je nach Anleitung).
+- **Nach Propagierung:** GitHub Pages → **Enforce HTTPS** aktivieren.
+- **EmailJS:** Allowed Origins auf `https://arcticlodge.net` setzen (Sicherheitstipp aus vorherigem Eintrag jetzt umsetzbar).
+- **Web3Forms:** Domain in Dashboard prüfen, falls dort Allowlist für Absender-Origin existiert.
+
 ## 2026-06-04 - EmailJS aktiviert & verifiziert (Auto-Bestätigung DE/EN/NO)
 
 - Nutzer hat EmailJS-Konto erstellt und die drei Werte geliefert; in `script.js` eingetragen: `EMAILJS_PUBLIC_KEY = "Vtmt7cpivLBxCMd53"`, `EMAILJS_SERVICE_ID = "service_8n48mab"`, `EMAILJS_TEMPLATE_ID = "template_5gs51l8"` (öffentliche Client-IDs, dürfen im Repo stehen).
 - EmailJS-Template angelegt (HTML im Arctic-Lodge-Stil) mit Variablen `{{to_email}}` (To), `{{subject}}`, `{{message}}`, `{{from_name}}`; `white-space:pre-line` für korrekte Zeilenumbrüche aus dem lokalisierten Text.
 - **Verifiziert:** `emailjs.send(...)` mit den echten IDs liefert **Status 200 OK** (Key/Service/Template gültig, Template-Variablen akzeptiert). SDK lädt, `window.I18N.getLanguage()` liefert die aktive Sprache → Auto-Reply folgt DE/EN/NO. Web3Forms (Eigentümer-Mail) unverändert.
-- **Noch offen:** echter End-to-End-Test mit einer realen Empfänger-Adresse (nur der Nutzer hat Postfach-Zugriff). **Sicherheits-Tipp:** in EmailJS unter Account die „Allowed Origins" auf die spätere Domain (arcticlodge.net) beschränken, um Missbrauch des öffentlichen Keys zu verhindern. `CONTACT_EMAIL` (mailto-Fallback / reply_to) weiterhin optional zu setzen.
+- **Noch offen:** echter End-to-End-Test mit einer realen Empfänger-Adresse (nur der Nutzer hat Postfach-Zugriff). **Sicherheits-Tipp (Domain live):** in EmailJS unter Account die „Allowed Origins" auf `https://arcticlodge.net` beschränken. `CONTACT_EMAIL` (mailto-Fallback / reply_to) weiterhin optional zu setzen.
 
 ## 2026-06-04 - Automatische Bestätigungs-E-Mail an Anfragende via EmailJS (mehrsprachig)
 

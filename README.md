@@ -5,7 +5,8 @@ Lebende Projektdokumentation für die Vermietungs-Website **„Arctic Lodge“**
 ## Repository & Live-Website
 
 - **GitHub:** https://github.com/spassigxD/lodge-in-der-arktis
-- **GitHub Pages:** https://spassigxD.github.io/lodge-in-der-arktis/ (nach Push kann die erste Veröffentlichung 1–2 Minuten dauern)
+- **Custom Domain:** https://arcticlodge.net (GitHub Pages, `CNAME` im Repo-Root)
+- **GitHub Pages (Fallback):** https://spassigxD.github.io/lodge-in-der-arktis/
 
 Statische Site im Repository-Root (`index.html`, relative Asset-Pfade). Galerie lädt `assets/airbnb/gallery-data.js` per HTTPS wie auf einem lokalen `python3 -m http.server`.
 
@@ -19,6 +20,7 @@ Ziel ist eine einfache, vertrauenswürdige Website, über die Interessierte das 
 
 ## Aktueller Stand
 
+- **Custom Domain arcticlodge.net (04.06.2026):** Nutzer hat DNS bei Squarespace und die Custom Domain in GitHub Pages eingerichtet („erledigt“). Im Repo liegt `CNAME` mit genau `arcticlodge.net` (eine Zeile, ohne `https://`). Live-URL der Site: **https://arcticlodge.net**; `www` per DNS auf Apex zeigen lassen. Nach DNS-Propagierung in GitHub Pages **„Enforce HTTPS“** aktivieren. In EmailJS unter Account **Allowed Origins** auf `https://arcticlodge.net` (und ggf. `https://www.arcticlodge.net`) beschränken.
 - **Automatische Bestätigungs-E-Mail an Anfragende via EmailJS, mehrsprachig (04.06.2026):** Zusätzlich zur unveränderten Owner-Benachrichtigung über **Web3Forms** erhält die anfragende Person nach erfolgreichem Versand automatisch eine **Bestätigungs-E-Mail** („Danke für Ihre Anfrage, wir melden uns bald") – in der **zum Absendezeitpunkt aktiven Sprache** (DE/EN/NO). Dafür wurde das **EmailJS Browser-SDK v4** in `index.html` per CDN (`https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js`) **vor** `script.js` eingebunden. In `script.js` gibt es drei vom Nutzer zu füllende Platzhalter-Konstanten **`EMAILJS_PUBLIC_KEY`**, **`EMAILJS_SERVICE_ID`**, **`EMAILJS_TEMPLATE_ID`** (TODO) sowie `isEmailJsConfigured()`. EmailJS wird nur initialisiert, wenn konfiguriert und SDK vorhanden. Der Auto-Reply ist **nicht-blockierend** und wird erst **nach** dem Web3Forms-Erfolg ausgelöst; Fehler werden nur per `console.warn` ignoriert (die Anfrage selbst ist bereits erfolgreich). Die aktive Sprache wird zur Laufzeit über `window.I18N.getLanguage()` gelesen. Das vom Nutzer einzurichtende **EmailJS-Template** nutzt die Variablen `{{to_email}}`, `{{subject}}`, `{{message}}` (optional `{{from_name}}`, `reply_to`); „To"-Feld = `{{to_email}}`. Neue i18n-Schlüssel: `autoreply.subject` / `autoreply.message` (DE/EN/NO). **Unverändert:** Web3Forms-Owner-Mail, Honeypot, Lade-Status, lokalisierte On-Page-Meldungen, Reset und `mailto:`-Fallback.
 - **Neues Hero-Bild: Nordlicht-Holzhaus (04.06.2026):** Das große Hero-Bild oben auf der Seite zeigt jetzt das vom Nutzer bereitgestellte Foto (Holzhaus bei Nacht unter grünem Nordlicht, schneebedecktes Dach, warme Lichterkette am Terrassengeländer, verschneiter Fjord und Berge im Hintergrund) statt der bisherigen Holzterrasse mit Wasserblick. Quelle: Chat-Anhang des Nutzers. Das alte Hero (`assets/hero.jpg`, Terrasse/Wasser) wurde als `assets/hero-terrasse.jpg` gesichert, bevor `assets/hero.jpg` mit dem neuen Motiv überschrieben wurde (per `sips`, JPEG, Qualität 85). Quellbild ist **720 × 540 px** (bereits unter der Projekt-Obergrenze von 2000 px, daher kein Hochskalieren); finale `assets/hero.jpg` = **720 × 540 px** (~51 KB). `src`/`data-lightbox-src` bleiben `assets/hero.jpg`; `<img>`-`width`/`height` von 1920×1280 auf **720×540** an die echten Pixelmaße angepasst (kein Layout-Shift). Bildbeschreibungen (alt/aria-label/Lightbox-Caption) in `index.html` und die i18n-Schlüssel `hero.mediaAria` / `hero.lightboxCaption` in DE/EN/NO auf das Nordlicht-Motiv aktualisiert; Hero-Überschrift/Lead unverändert. **Nachtrag (Cache-Fix):** Weil der gleiche Dateiname `assets/hero.jpg` von Browsern gecacht wurde (altes Terrassen-Bild blieb sichtbar), wurde das neue Hero in **`assets/hero-nordlicht.jpg`** umbenannt und `src`/`data-lightbox-src` in `index.html` darauf umgestellt; `assets/hero-terrasse.jpg` bleibt als Backup.
 - **Markenname „Arctic Lodge“ (04.06.2026):** Sichtbarer Markenname von „Lodge in der Arktis“ auf **„Arctic Lodge“** umbenannt – in `index.html` (`<title>`, `.logo-mark`, Hero-`<h1>`, Hero-Lightbox-Caption, `.footer-brand`, `.footer-copy`) sowie in `README.md` und `assets/README.md`. **Unverändert:** Projektordner `Kirkenes Haus`, Repo/Pages-Name `lodge-in-der-arktis`, Ortsnamen (Kirkenes, Sør-Varanger, Pasvikelv) und generische Begriffe wie „die Lodge“ / „Savio Lodge“.
@@ -62,6 +64,7 @@ Ziel ist eine einfache, vertrauenswürdige Website, über die Interessierte das 
 
 ```text
 .
+├── CNAME                    → arcticlodge.net (GitHub Pages Custom Domain)
 ├── .cursor/
 │   └── rules/
 │       └── project-updates.mdc
