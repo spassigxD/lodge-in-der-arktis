@@ -1,6 +1,6 @@
 # Assets – Bilder und Videos
 
-Medien für die Website **Lodge in der Arktis**. Stand **30.05.2026**: **116 Airbnb-Fotos** aus `haus-fotos/bilder/von_airbnb/` nach `assets/airbnb/` kopiert, webfreundlich benannt und in Galerie + Lightbox eingebunden. Der Übersichts-Screenshot `01_uebersicht.png` wird bewusst nicht eingebunden (enthielt unter „Terrasse 1“ eine Skandinavien-Karte; siehe Ideenprotokoll 30.05.2026).
+Medien für die Website **Arctic Lodge** (Markenname seit 04.06.2026; zuvor „Lodge in der Arktis“). Stand **30.05.2026**: **116 Airbnb-Fotos** aus `haus-fotos/bilder/von_airbnb/` nach `assets/airbnb/` kopiert, webfreundlich benannt und in Galerie + Lightbox eingebunden. Der Übersichts-Screenshot `01_uebersicht.png` wird bewusst nicht eingebunden (enthielt unter „Terrasse 1“ eine Skandinavien-Karte; siehe Ideenprotokoll 30.05.2026).
 
 ## Airbnb-Galerie (`assets/airbnb/`)
 

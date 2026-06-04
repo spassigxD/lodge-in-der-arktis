@@ -1,6 +1,6 @@
 # Kirkenes Haus
 
-Lebende Projektdokumentation für die Vermietungs-Website **„Lodge in der Arktis“** (sichtbarer Markenname) – Projektordner weiterhin `Kirkenes Haus`; Objekt in Sør-Varanger bei Kirkenes, Norwegen.
+Lebende Projektdokumentation für die Vermietungs-Website **„Arctic Lodge“** (sichtbarer Markenname, seit 04.06.2026; zuvor „Lodge in der Arktis“) – Projektordner weiterhin `Kirkenes Haus`; Objekt in Sør-Varanger bei Kirkenes, Norwegen.
 
 ## Repository & Live-Website
 
@@ -8,6 +8,8 @@ Lebende Projektdokumentation für die Vermietungs-Website **„Lodge in der Arkt
 - **GitHub Pages:** https://spassigxD.github.io/lodge-in-der-arktis/ (nach Push kann die erste Veröffentlichung 1–2 Minuten dauern)
 
 Statische Site im Repository-Root (`index.html`, relative Asset-Pfade). Galerie lädt `assets/airbnb/gallery-data.js` per HTTPS wie auf einem lokalen `python3 -m http.server`.
+
+**Externe Abhängigkeiten (CDN, kein Build-System):** Google Fonts (Typografie), **Web3Forms** (`fetch`-POST an `https://api.web3forms.com/submit` für die Owner-Benachrichtigung) und **EmailJS Browser-SDK v4** (`https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js`, in `index.html` vor `script.js` geladen) für die automatische, mehrsprachige Bestätigungs-E-Mail an die anfragende Person.
 
 **Git-Ausschlüsse:** `.cursor/`, `assets/kirkenes_bilder_plaene.zip` (Duplikat zum entpackten Archiv unter `assets/haus-fotos/`, ~64 MB). Roharchiv `assets/haus-fotos/` (~65 MB) ist im Repo enthalten (unter GitHubs 100-MB-Dateilimit).
 
@@ -17,6 +19,11 @@ Ziel ist eine einfache, vertrauenswürdige Website, über die Interessierte das 
 
 ## Aktueller Stand
 
+- **Automatische Bestätigungs-E-Mail an Anfragende via EmailJS, mehrsprachig (04.06.2026):** Zusätzlich zur unveränderten Owner-Benachrichtigung über **Web3Forms** erhält die anfragende Person nach erfolgreichem Versand automatisch eine **Bestätigungs-E-Mail** („Danke für Ihre Anfrage, wir melden uns bald") – in der **zum Absendezeitpunkt aktiven Sprache** (DE/EN/NO). Dafür wurde das **EmailJS Browser-SDK v4** in `index.html` per CDN (`https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js`) **vor** `script.js` eingebunden. In `script.js` gibt es drei vom Nutzer zu füllende Platzhalter-Konstanten **`EMAILJS_PUBLIC_KEY`**, **`EMAILJS_SERVICE_ID`**, **`EMAILJS_TEMPLATE_ID`** (TODO) sowie `isEmailJsConfigured()`. EmailJS wird nur initialisiert, wenn konfiguriert und SDK vorhanden. Der Auto-Reply ist **nicht-blockierend** und wird erst **nach** dem Web3Forms-Erfolg ausgelöst; Fehler werden nur per `console.warn` ignoriert (die Anfrage selbst ist bereits erfolgreich). Die aktive Sprache wird zur Laufzeit über `window.I18N.getLanguage()` gelesen. Das vom Nutzer einzurichtende **EmailJS-Template** nutzt die Variablen `{{to_email}}`, `{{subject}}`, `{{message}}` (optional `{{from_name}}`, `reply_to`); „To"-Feld = `{{to_email}}`. Neue i18n-Schlüssel: `autoreply.subject` / `autoreply.message` (DE/EN/NO). **Unverändert:** Web3Forms-Owner-Mail, Honeypot, Lade-Status, lokalisierte On-Page-Meldungen, Reset und `mailto:`-Fallback.
+- **Neues Hero-Bild: Nordlicht-Holzhaus (04.06.2026):** Das große Hero-Bild oben auf der Seite zeigt jetzt das vom Nutzer bereitgestellte Foto (Holzhaus bei Nacht unter grünem Nordlicht, schneebedecktes Dach, warme Lichterkette am Terrassengeländer, verschneiter Fjord und Berge im Hintergrund) statt der bisherigen Holzterrasse mit Wasserblick. Quelle: Chat-Anhang des Nutzers. Das alte Hero (`assets/hero.jpg`, Terrasse/Wasser) wurde als `assets/hero-terrasse.jpg` gesichert, bevor `assets/hero.jpg` mit dem neuen Motiv überschrieben wurde (per `sips`, JPEG, Qualität 85). Quellbild ist **720 × 540 px** (bereits unter der Projekt-Obergrenze von 2000 px, daher kein Hochskalieren); finale `assets/hero.jpg` = **720 × 540 px** (~51 KB). `src`/`data-lightbox-src` bleiben `assets/hero.jpg`; `<img>`-`width`/`height` von 1920×1280 auf **720×540** an die echten Pixelmaße angepasst (kein Layout-Shift). Bildbeschreibungen (alt/aria-label/Lightbox-Caption) in `index.html` und die i18n-Schlüssel `hero.mediaAria` / `hero.lightboxCaption` in DE/EN/NO auf das Nordlicht-Motiv aktualisiert; Hero-Überschrift/Lead unverändert. **Nachtrag (Cache-Fix):** Weil der gleiche Dateiname `assets/hero.jpg` von Browsern gecacht wurde (altes Terrassen-Bild blieb sichtbar), wurde das neue Hero in **`assets/hero-nordlicht.jpg`** umbenannt und `src`/`data-lightbox-src` in `index.html` darauf umgestellt; `assets/hero-terrasse.jpg` bleibt als Backup.
+- **Markenname „Arctic Lodge“ (04.06.2026):** Sichtbarer Markenname von „Lodge in der Arktis“ auf **„Arctic Lodge“** umbenannt – in `index.html` (`<title>`, `.logo-mark`, Hero-`<h1>`, Hero-Lightbox-Caption, `.footer-brand`, `.footer-copy`) sowie in `README.md` und `assets/README.md`. **Unverändert:** Projektordner `Kirkenes Haus`, Repo/Pages-Name `lodge-in-der-arktis`, Ortsnamen (Kirkenes, Sør-Varanger, Pasvikelv) und generische Begriffe wie „die Lodge“ / „Savio Lodge“.
+- **Echter Formularversand via Web3Forms (04.06.2026):** Buchungs- (`#bookingForm`) und Kontaktformular (`#contactForm`) senden per `fetch`-POST an Web3Forms (statisch, kein Backend). Platzhalter-Konstanten `WEB3FORMS_ACCESS_KEY` und `CONTACT_EMAIL` oben in `script.js`. Solange der Key Platzhalter ist: eleganter `mailto:`-Fallback (vorausgefüllte E-Mail) + lokalisierter Hinweis; mit echtem Key: Versand mit Lade-Status, lokalisierter Erfolgs-/Fehlermeldung und Reset. Honeypot-Feld `botcheck`, `subject` und `from_name` für lesbare Mails. Prototyp-Hinweise „im Prototyp ohne Versanddienst“ entfernt; Airbnb-Link bleibt. Kontaktliste bleibt „Auf Anfrage“ (`data-todo`).
+- **Automatische Mehrsprachigkeit DE/EN/NO (04.06.2026):** Neue Datei `i18n.js` (vor `script.js` geladen) mit vollständigem Wörterbuch Deutsch (Quelle/Standard), Englisch, Norwegisch. Sprachumschalter (DE/EN/NO) im Header; Wahl wird in `localStorage` gespeichert. Automatische Erkennung: (1) gespeicherte Wahl, (2) IP-Geolokalisierung über `ipwho.is`/`ipapi.co` (NO→no, DE/AT/CH/LI→de, sonst→en; async, Timeout, gecacht), (3) `navigator.language`, sonst Deutsch. `<html lang>` wird zur Laufzeit gesetzt; dynamische JS-Strings (Galerie-Filter/Kategorien, Lightbox-`aria-label`s, Formular-Status, Galerie-Leermeldung) sind ebenfalls lokalisiert.
 - **GitHub & GitHub Pages (30.05.2026):** Projekt unter https://github.com/spassigxD/lodge-in-der-arktis – Live-URL https://spassigxD.github.io/lodge-in-der-arktis/ (Branch `main`, Root). ZIP `assets/kirkenes_bilder_plaene.zip` in `.gitignore` (Inhalt in `assets/haus-fotos/`).
 - **Karten-Bild „Terrasse 1“ aus Galerie entfernt (30.05.2026):** Im Übersichts-Screenshot `001-uebersicht.png` (Airbnb-Fotorundgang) erschien unter „Terrasse 1“ statt eines Terrassenfotos eine Skandinavien-Karte mit rotem Pin. Diese Karte war ausschließlich in diesem zusammengesetzten Übersichts-Screenshot enthalten (keine eigene Bilddatei). Daher wurde die Übersichts-Kachel komplett aus der Galerie genommen: Eintrag in `gallery-data.js` + `gallery.json` gelöscht, `count` 117 → **116**, Datei `assets/airbnb/001-uebersicht.png` entfernt, `build-airbnb-assets.py` überspringt das Übersichts-PNG künftig. Der Lightbox-Zähler ist dynamisch (`items.length`) und passt sich automatisch an. Die echten Terrassenfotos (z. B. `008-/014-/015-aussen.jpg`) und alle Raumkategorien bleiben erhalten; die Lage zeigt weiterhin die echte Google-Maps-Einbettung in `#lage`.
 - **Check-in / Check-out (30.05.2026):** Check-in ab **16:00 Uhr**, Check-out um **11:00 Uhr** – in `index.html` in Quick Facts, Willkommenstext, Ausstattung (Allgemein), Hinweise zur Buchung (`#preise`) und Footer eingetragen; `data-todo` für check-in/out entfernt.
@@ -66,7 +73,8 @@ Ziel ist eine einfache, vertrauenswürdige Website, über die Interessierte das 
 │   ├── haus-fotos/          → Roharchiv (Dropbox-ZIP)
 │   ├── plaene/              → Grundrisse & Lageplan
 │   ├── bg/                  → Sektions-Hintergründe (optimiert)
-│   ├── hero.jpg
+│   ├── hero.jpg                → Hero-Bild (seit 04.06.2026 Nordlicht-Holzhaus)
+│   ├── hero-terrasse.jpg       → vorheriges Hero (Terrasse/Wasser, gesichert)
 │   ├── car-kompakt.jpg
 │   ├── car-suv.jpg
 │   ├── car-kombi.jpg
@@ -74,7 +82,10 @@ Ziel ist eine einfache, vertrauenswürdige Website, über die Interessierte das 
 ├── scripts/
 │   └── build-airbnb-assets.py
 ├── index.html
-├── script.js
+├── i18n.js                  → Wörterbuch DE/EN/NO + Spracherkennung/-umschalter (vor script.js geladen)
+│                             enthält auch autoreply.subject/-message (EmailJS-Bestätigung)
+├── script.js                → Web3Forms (Owner-Mail) + EmailJS (Auto-Bestätigung); EmailJS-SDK v4 per CDN
+                                in index.html (vor script.js) eingebunden
 ├── styles.css
 └── README.md
 ```
@@ -98,12 +109,15 @@ Danach im Browser `http://localhost:8000` öffnen. Den Server anschließend im T
 
 ## Nächste Schritte
 
-- Verbleibende `data-todo`-Felder: m², finale Saisonpreise je Zeitraum, Reinigungsgebühr, Kaffeemaschine, Haustiere, Entfernungen Natur/Grenzregion, Kontaktdaten.
+- **Offen vom Nutzer (04.06.2026):**
+  1. **Web3Forms Access Key** in `script.js` eintragen (Konstante `WEB3FORMS_ACCESS_KEY`, gratis Key von https://web3forms.com) **und** echte Kontaktdaten: E-Mail für den mailto-Fallback (Konstante `CONTACT_EMAIL` in `script.js`) sowie E-Mail/Telefon/WhatsApp in der Kontaktliste (`#kontakt`, `.contact-list`, aktuell „Auf Anfrage“).
+  2. **Sprachset bestätigen** (aktuell DE/EN/NO) – ggf. weitere Sprachen ergänzen.
+  3. **EmailJS einrichten** (für die automatische Bestätigung an Anfragende): kostenloses Konto auf https://www.emailjs.com, Service + Template anlegen und die drei Konstanten in `script.js` füllen: `EMAILJS_PUBLIC_KEY`, `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`. Das Template muss die Variablen `{{to_email}}` (= „To"-Empfänger), `{{subject}}`, `{{message}}` (optional `{{from_name}}`, `reply_to`) verwenden. Solange Platzhalter stehen, wird der Auto-Reply sicher übersprungen; Web3Forms bleibt davon unberührt.
+- Verbleibende `data-todo`-Felder: m², finale Saisonpreise je Zeitraum, Reinigungsgebühr, Kaffeemaschine, Haustiere, Entfernungen Natur/Grenzregion.
 - Weitere Fotos aus `assets/haus-fotos/` auswählen (Sauna, Esszimmer, Keller) und Galerie erweitern; Hero-Bild bei Bedarf tauschen.
-- Kontaktziel festlegen: echte E-Mail-Adresse, Telefonnummer, WhatsApp-Link oder Formular-Dienst.
-- Buchungsanfragen technisch anbinden: z.B. Formular-Dienst, Kalenderintegration, Verfügbarkeitskalender oder später ein kleines Backend.
+- Buchungsanfragen weiter ausbauen: optional Kalenderintegration/Verfügbarkeitskalender oder später ein kleines Backend.
 - Bewertungen aus Airbnb oder anderen Plattformen rechtlich sauber übernehmen oder als manuelle Zitate pflegen.
-- Mehrsprachigkeit planen: Deutsch, Englisch, Norwegisch; optional Chinesisch für ausgewählte Marketing-Inhalte.
+- Optional weitere Sprachen (z. B. Chinesisch) für ausgewählte Marketing-Inhalte.
 
 ## Pflegepflicht
 

@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
+      data-i18n-content="meta.description"
       content="Ferienhaus in Sør-Varanger bei Kirkenes, Norwegen – direkt am Wasser, mit Sauna und Kamin. Bis zu 10 Gäste, 3 Schlafzimmer."
     >
-    <title>Lodge in der Arktis | Ferienhaus in Nordnorwegen</title>
+    <title data-i18n="title">Arctic Lodge | Ferienhaus in Nordnorwegen</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -18,44 +19,70 @@
   </head>
   <body>
     <header class="site-header" id="siteHeader">
-      <a class="logo" href="#start" aria-label="Zur Startseite">
-        <span class="logo-mark">Lodge in der Arktis</span>
+      <a class="logo" href="#start" data-i18n-aria-label="nav.logoAria" aria-label="Zur Startseite">
+        <span class="logo-mark" data-i18n="brand">Arctic Lodge</span>
       </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hauptnavigation">
-        Menü
-      </button>
-      <nav id="hauptnavigation" class="main-nav" aria-label="Hauptnavigation">
-        <a href="#haus">Haus</a>
-        <a href="#ausstattung">Ausstattung</a>
-        <a href="#grundriss">Grundriss</a>
-        <a href="#galerie">Galerie</a>
-        <a href="#preise">Preise</a>
-        <a href="#lage">Lage</a>
-        <a href="#anreise">Anreise</a>
-        <a href="#bewertungen">Bewertungen</a>
-        <a href="#kontakt">Kontakt</a>
-        <a class="nav-cta" href="#buchung">Anfragen</a>
+      <nav id="hauptnavigation" class="main-nav" data-i18n-aria-label="nav.aria" aria-label="Hauptnavigation">
+        <a href="#haus" data-i18n="nav.haus">Haus</a>
+        <a href="#ausstattung" data-i18n="nav.ausstattung">Ausstattung</a>
+        <a href="#grundriss" data-i18n="nav.grundriss">Grundriss</a>
+        <a href="#galerie" data-i18n="nav.galerie">Galerie</a>
+        <a href="#preise" data-i18n="nav.preise">Preise</a>
+        <a href="#lage" data-i18n="nav.lage">Lage</a>
+        <a href="#anreise" data-i18n="nav.anreise">Anreise</a>
+        <a href="#bewertungen" data-i18n="nav.bewertungen">Bewertungen</a>
+        <a href="#kontakt" data-i18n="nav.kontakt">Kontakt</a>
+        <a class="nav-cta" href="#buchung" data-i18n="nav.cta">Anfragen</a>
       </nav>
+      <div class="header-controls">
+        <div
+          class="lang-switcher"
+          id="langSwitcher"
+          role="group"
+          data-i18n-aria-label="lang.aria"
+          aria-label="Sprache wählen"
+        >
+          <button type="button" class="lang-btn" data-lang="de" lang="de" aria-pressed="false">DE</button>
+          <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="false">EN</button>
+          <button type="button" class="lang-btn" data-lang="no" lang="no" aria-pressed="false">NO</button>
+        </div>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="hauptnavigation"
+          data-i18n="nav.toggle"
+        >
+          Menü
+        </button>
+      </div>
     </header>
 
     <main id="start">
       <section class="hero" aria-label="Willkommen">
-        <div class="hero-media hero-media--photo" role="img" aria-label="Holzterrasse der Lodge mit Blick über das Wasser in Sør-Varanger">
+        <div
+          class="hero-media hero-media--photo"
+          role="img"
+          data-i18n-aria-label="hero.mediaAria"
+          aria-label="Arctic Lodge bei Nordlicht – Holzhaus im Schnee in Sør-Varanger"
+        >
           <button
             type="button"
             class="hero-media-expand lightbox-trigger"
-            data-lightbox-src="assets/hero.jpg"
-            data-lightbox-caption="Holzterrasse mit Wasserblick – Lodge in der Arktis"
+            data-lightbox-src="assets/hero-nordlicht.jpg"
+            data-lightbox-caption="Arctic Lodge bei Nordlicht – Holzhaus im Schnee in Sør-Varanger"
+            data-i18n-caption="hero.lightboxCaption"
             data-lightbox-group="hero"
+            data-i18n-aria-label="hero.expandAria"
             aria-label="Hero-Bild vergrößern"
           >
             <img
-              class="hero-media-image"
-              src="assets/hero.jpg"
+            class="hero-media-image"
+            src="assets/hero-nordlicht.jpg"
               alt=""
               aria-hidden="true"
-              width="1920"
-              height="1280"
+              width="720"
+              height="540"
               decoding="async"
               fetchpriority="high"
             >
@@ -63,29 +90,29 @@
           <div class="hero-media-overlay"></div>
         </div>
         <div class="hero-inner">
-          <p class="eyebrow">Ferienhaus · Sør-Varanger bei Kirkenes, Norwegen</p>
-          <h1>Lodge in der Arktis</h1>
-          <p class="hero-lead">Direkt am Wasser in Sør-Varanger</p>
-          <p class="hero-text">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Ferienhaus · Sør-Varanger bei Kirkenes, Norwegen</p>
+          <h1 data-i18n="hero.title">Arctic Lodge</h1>
+          <p class="hero-lead" data-i18n="hero.lead">Direkt am Wasser in Sør-Varanger</p>
+          <p class="hero-text" data-i18n="hero.text">
             Ein großzügiges Ferienhaus für bis zu 10 Gäste in Sør-Varanger – mit Sauna, Kamin,
             Terrasse und Balkon am Wasser. Ideal als Basis für Nordlichter, Grenzregion und
             die Stille des äußersten Nordostens.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#buchung">Verfügbarkeit anfragen</a>
-            <a class="button ghost" href="#galerie">Impressionen</a>
+            <a class="button primary" href="#buchung" data-i18n="hero.cta1">Verfügbarkeit anfragen</a>
+            <a class="button ghost" href="#galerie" data-i18n="hero.cta2">Impressionen</a>
           </div>
         </div>
       </section>
 
       <section id="haus" class="section section-intro section-has-bg" data-bg="assets/bg/bg-wasser.jpg">
         <div class="section-narrow">
-          <h2>Willkommen in Sør-Varanger</h2>
-          <p class="lead">
+          <h2 data-i18n="haus.title">Willkommen in Sør-Varanger</h2>
+          <p class="lead" data-i18n="haus.lead">
             Das Haus liegt in Sør-Varanger – am Pasvikelv, etwa eine Autostunde südlich
             von Kirkenes im äußersten Nordosten Norwegens.
           </p>
-          <p>
+          <p data-i18n="haus.body">
             Mit 3 Schlafzimmern, 7 Betten, 3 Badezimmern und Platz für bis zu 10 Gäste bietet es
             einen privaten Rückzugsort direkt am Wasser: Sauna, Kamin, Terrasse, Balkon und
             schnelles WLAN über Glasfaser. Check-in ab 16:00 Uhr, Check-out um 11:00 Uhr;
@@ -93,130 +120,130 @@
           </p>
         </div>
 
-        <div class="quick-facts" aria-label="Kurzinfos zum Haus">
+        <div class="quick-facts" data-i18n-aria-label="facts.quickAria" aria-label="Kurzinfos zum Haus">
           <article class="fact-card">
-            <strong class="fact-value" data-todo="quadratmeter">Auf Anfrage</strong>
-            <span class="fact-label">Quadratmeter</span>
+            <strong class="fact-value" data-todo="quadratmeter" data-i18n="facts.qmValue">Auf Anfrage</strong>
+            <span class="fact-label" data-i18n="facts.qmLabel">Quadratmeter</span>
             <!-- TODO: Wohnfläche in m² eintragen -->
           </article>
           <article class="fact-card">
             <strong class="fact-value">10</strong>
-            <span class="fact-label">Gäste max.</span>
+            <span class="fact-label" data-i18n="facts.guestsLabel">Gäste max.</span>
           </article>
           <article class="fact-card">
             <strong class="fact-value">3</strong>
-            <span class="fact-label">Schlafzimmer</span>
+            <span class="fact-label" data-i18n="facts.bedroomsLabel">Schlafzimmer</span>
           </article>
           <article class="fact-card">
             <strong class="fact-value">3</strong>
-            <span class="fact-label">Badezimmer</span>
+            <span class="fact-label" data-i18n="facts.bathroomsLabel">Badezimmer</span>
           </article>
           <article class="fact-card">
-            <strong class="fact-value">ab 16:00 Uhr</strong>
-            <span class="fact-label">Check-in</span>
+            <strong class="fact-value" data-i18n="facts.checkinValue">ab 16:00 Uhr</strong>
+            <span class="fact-label" data-i18n="facts.checkinLabel">Check-in</span>
           </article>
           <article class="fact-card">
-            <strong class="fact-value">11:00 Uhr</strong>
-            <span class="fact-label">Check-out</span>
+            <strong class="fact-value" data-i18n="facts.checkoutValue">11:00 Uhr</strong>
+            <span class="fact-label" data-i18n="facts.checkoutLabel">Check-out</span>
           </article>
         </div>
       </section>
 
       <section id="highlights" class="section section-muted section-has-bg" data-bg="assets/bg/bg-aussen.jpg">
         <div class="section-heading centered">
-          <p class="eyebrow">Highlights</p>
-          <h2>Das Haus auf einen Blick</h2>
-          <p>Ausgewählte Besonderheiten des Hauses in Sør-Varanger am Wasser.</p>
+          <p class="eyebrow" data-i18n="highlights.eyebrow">Highlights</p>
+          <h2 data-i18n="highlights.title">Das Haus auf einen Blick</h2>
+          <p data-i18n="highlights.intro">Ausgewählte Besonderheiten des Hauses in Sør-Varanger am Wasser.</p>
         </div>
         <div class="highlights-grid">
           <article class="highlight-card">
             <span class="highlight-icon" aria-hidden="true">◆</span>
-            <h3>Direkt am Wasser</h3>
-            <p>Lage am Pasvikelv in Sør-Varanger – Wasser, Weitblick und Ruhe vor der Haustür.</p>
+            <h3 data-i18n="highlights.card1Title">Direkt am Wasser</h3>
+            <p data-i18n="highlights.card1Text">Lage am Pasvikelv in Sør-Varanger – Wasser, Weitblick und Ruhe vor der Haustür.</p>
           </article>
           <article class="highlight-card">
             <span class="highlight-icon" aria-hidden="true">◆</span>
-            <h3>Sauna &amp; Kamin</h3>
-            <p>Entspannen nach Ausflügen: eigene Sauna, Kamin innen und Feuerstelle draußen.</p>
+            <h3 data-i18n="highlights.card2Title">Sauna &amp; Kamin</h3>
+            <p data-i18n="highlights.card2Text">Entspannen nach Ausflügen: eigene Sauna, Kamin innen und Feuerstelle draußen.</p>
           </article>
           <article class="highlight-card">
             <span class="highlight-icon" aria-hidden="true">◆</span>
-            <h3>Terrasse &amp; Balkon</h3>
-            <p>Außenbereiche zum Verweilen – mit Blick auf Wasser und nordische Natur.</p>
+            <h3 data-i18n="highlights.card3Title">Terrasse &amp; Balkon</h3>
+            <p data-i18n="highlights.card3Text">Außenbereiche zum Verweilen – mit Blick auf Wasser und nordische Natur.</p>
           </article>
           <article class="highlight-card">
             <span class="highlight-icon" aria-hidden="true">◆</span>
-            <h3>WLAN / Glasfaser</h3>
-            <p>Schnelles Internet für Alltag, Streaming und Homeoffice am Arbeitsplatz.</p>
+            <h3 data-i18n="highlights.card4Title">WLAN / Glasfaser</h3>
+            <p data-i18n="highlights.card4Text">Schnelles Internet für Alltag, Streaming und Homeoffice am Arbeitsplatz.</p>
           </article>
           <article class="highlight-card">
             <span class="highlight-icon" aria-hidden="true">◆</span>
-            <h3>Voll ausgestattete Küche</h3>
-            <p>Küche mit allem Nötigen für längere Aufenthalte und gemeinsames Kochen.</p>
+            <h3 data-i18n="highlights.card5Title">Voll ausgestattete Küche</h3>
+            <p data-i18n="highlights.card5Text">Küche mit allem Nötigen für längere Aufenthalte und gemeinsames Kochen.</p>
           </article>
           <article class="highlight-card">
             <span class="highlight-icon" aria-hidden="true">◆</span>
-            <h3>Parkplatz &amp; TV</h3>
-            <p>Parkplatz am Haus, Fernseher, Waschmaschine und Arbeitsplatz im Haus.</p>
+            <h3 data-i18n="highlights.card6Title">Parkplatz &amp; TV</h3>
+            <p data-i18n="highlights.card6Text">Parkplatz am Haus, Fernseher, Waschmaschine und Arbeitsplatz im Haus.</p>
           </article>
         </div>
       </section>
 
       <section id="ausstattung" class="section section-has-bg" data-bg="assets/bg/bg-wohnzimmer.jpg">
         <div class="section-heading centered">
-          <p class="eyebrow">Ausstattung</p>
-          <h2>Komfort für Ihren Aufenthalt</h2>
-          <p>Übersicht der bestätigten Ausstattung – offene Punkte sind als „Auf Anfrage“ gekennzeichnet.</p>
+          <p class="eyebrow" data-i18n="ausstattung.eyebrow">Ausstattung</p>
+          <h2 data-i18n="ausstattung.title">Komfort für Ihren Aufenthalt</h2>
+          <p data-i18n="ausstattung.intro">Übersicht der bestätigten Ausstattung – offene Punkte sind als „Auf Anfrage“ gekennzeichnet.</p>
         </div>
         <div class="amenity-columns">
           <article class="amenity-block">
-            <h3>Wohnbereich</h3>
+            <h3 data-i18n="ausstattung.wohnTitle">Wohnbereich</h3>
             <ul>
-              <li>Gemütliche Sitzecke mit Kamin innen (Fireplace)</li>
-              <li>Feuerstelle draußen</li>
-              <li>Fernseher (TV)</li>
-              <li>Sauna im Haus</li>
+              <li data-i18n="ausstattung.wohn1">Gemütliche Sitzecke mit Kamin innen (Fireplace)</li>
+              <li data-i18n="ausstattung.wohn2">Feuerstelle draußen</li>
+              <li data-i18n="ausstattung.wohn3">Fernseher (TV)</li>
+              <li data-i18n="ausstattung.wohn4">Sauna im Haus</li>
             </ul>
           </article>
           <article class="amenity-block">
-            <h3>Küche</h3>
+            <h3 data-i18n="ausstattung.kuecheTitle">Küche</h3>
             <ul>
-              <li>Voll ausgestattete Küche</li>
-              <li>Geschirr und Küchenutensilien</li>
-              <li data-todo="kueche-kaffee">Kaffeemaschine – Auf Anfrage</li>
+              <li data-i18n="ausstattung.kueche1">Voll ausgestattete Küche</li>
+              <li data-i18n="ausstattung.kueche2">Geschirr und Küchenutensilien</li>
+              <li data-todo="kueche-kaffee" data-i18n="ausstattung.kueche3">Kaffeemaschine – Auf Anfrage</li>
             </ul>
           </article>
           <article class="amenity-block">
-            <h3>Schlafzimmer</h3>
+            <h3 data-i18n="ausstattung.schlafTitle">Schlafzimmer</h3>
             <ul>
-              <li>3 Schlafzimmer · 7 Betten · max. 10 Gäste</li>
-              <li>Bettwäsche ist enthalten</li>
+              <li data-i18n="ausstattung.schlaf1">3 Schlafzimmer · 7 Betten · max. 10 Gäste</li>
+              <li data-i18n="ausstattung.schlaf2">Bettwäsche ist enthalten</li>
             </ul>
           </article>
           <article class="amenity-block">
-            <h3>Badezimmer</h3>
+            <h3 data-i18n="ausstattung.badTitle">Badezimmer</h3>
             <ul>
-              <li>3 Badezimmer</li>
-              <li>Handtücher sind vorhanden</li>
-              <li>Föhn verfügbar</li>
+              <li data-i18n="ausstattung.bad1">3 Badezimmer</li>
+              <li data-i18n="ausstattung.bad2">Handtücher sind vorhanden</li>
+              <li data-i18n="ausstattung.bad3">Föhn verfügbar</li>
             </ul>
           </article>
           <article class="amenity-block">
-            <h3>Außen &amp; Lage</h3>
+            <h3 data-i18n="ausstattung.aussenTitle">Außen &amp; Lage</h3>
             <ul>
-              <li>Terrasse und Balkon</li>
-              <li>Parkplatz am Haus</li>
-              <li>Direkt am Wasser · Vaggeveien 12, Sør-Varanger</li>
+              <li data-i18n="ausstattung.aussen1">Terrasse und Balkon</li>
+              <li data-i18n="ausstattung.aussen2">Parkplatz am Haus</li>
+              <li data-i18n="ausstattung.aussen3">Direkt am Wasser · Vaggeveien 12, Sør-Varanger</li>
             </ul>
           </article>
           <article class="amenity-block">
-            <h3>Allgemein</h3>
+            <h3 data-i18n="ausstattung.allgTitle">Allgemein</h3>
             <ul>
-              <li>WLAN / Glasfaser</li>
-              <li>Waschmaschine</li>
-              <li>Arbeitsplatz (Workspace)</li>
-              <li>Check-in ab 16:00 Uhr · Check-out um 11:00 Uhr</li>
-              <li data-todo="aussen-haustiere">Haustiere – Auf Anfrage</li>
+              <li data-i18n="ausstattung.allg1">WLAN / Glasfaser</li>
+              <li data-i18n="ausstattung.allg2">Waschmaschine</li>
+              <li data-i18n="ausstattung.allg3">Arbeitsplatz (Workspace)</li>
+              <li data-i18n="ausstattung.allg4">Check-in ab 16:00 Uhr · Check-out um 11:00 Uhr</li>
+              <li data-todo="aussen-haustiere" data-i18n="ausstattung.allg5">Haustiere – Auf Anfrage</li>
             </ul>
           </article>
         </div>
@@ -224,15 +251,15 @@
 
       <section id="grundriss" class="section section-plans section-muted">
         <div class="section-heading centered">
-          <p class="eyebrow">Grundriss</p>
-          <h2>Raumaufteilung der Lodge</h2>
-          <p>
+          <p class="eyebrow" data-i18n="grundriss.eyebrow">Grundriss</p>
+          <h2 data-i18n="grundriss.title">Raumaufteilung der Lodge</h2>
+          <p data-i18n="grundriss.intro">
             Erd- und Dachgeschoss auf einen Blick – groß und übersichtlich wie auf einer
             Chalet-Detailseite. Per Klick vergrößern.
           </p>
         </div>
 
-        <div class="plans-grid" aria-label="Grundrisse der Lodge">
+        <div class="plans-grid" data-i18n-aria-label="grundriss.plansAria" aria-label="Grundrisse der Lodge">
           <figure class="plan-card">
             <button
               type="button"
@@ -240,6 +267,8 @@
               data-lightbox-group="grundriss"
               data-lightbox-src="assets/plaene/grundriss-erdgeschoss.jpg"
               data-lightbox-caption="Grundriss Erdgeschoss"
+              data-i18n-caption="grundriss.egCaption"
+              data-i18n-aria-label="grundriss.egAria"
               aria-label="Grundriss Erdgeschoss vergrößern"
             >
               <img
@@ -252,7 +281,7 @@
                 decoding="async"
               >
             </button>
-            <figcaption>Erdgeschoss</figcaption>
+            <figcaption data-i18n="grundriss.egFig">Erdgeschoss</figcaption>
           </figure>
 
           <figure class="plan-card">
@@ -262,6 +291,8 @@
               data-lightbox-group="grundriss"
               data-lightbox-src="assets/plaene/grundriss-dachgeschoss.jpg"
               data-lightbox-caption="Grundriss Dachgeschoss"
+              data-i18n-caption="grundriss.dgCaption"
+              data-i18n-aria-label="grundriss.dgAria"
               aria-label="Grundriss Dachgeschoss vergrößern"
             >
               <img
@@ -274,7 +305,7 @@
                 decoding="async"
               >
             </button>
-            <figcaption>Dachgeschoss</figcaption>
+            <figcaption data-i18n="grundriss.dgFig">Dachgeschoss</figcaption>
           </figure>
         </div>
 
@@ -285,6 +316,8 @@
             data-lightbox-group="grundriss"
             data-lightbox-src="assets/plaene/planskizze-savio-lodge.jpg"
             data-lightbox-caption="Planskizze Savio Lodge"
+            data-i18n-caption="grundriss.sketchCaption"
+            data-i18n="grundriss.sketchView"
           >Planskizze ansehen</button>
           ·
           <a
@@ -292,30 +325,32 @@
             class="plan-link plan-link--pdf"
             target="_blank"
             rel="noopener noreferrer"
+            data-i18n="grundriss.pdf"
           >PDF herunterladen</a>
-          · Weitere Unterlagen im Archiv unter
-          <code>assets/haus-fotos/Unterlagen_zum_Haus/</code>.
+          <span data-i18n-html="grundriss.archiveNote">· Weitere Unterlagen im Archiv unter
+          <code>assets/haus-fotos/Unterlagen_zum_Haus/</code>.</span>
         </p>
       </section>
 
       <section id="galerie" class="section section-gallery">
         <div class="section-heading centered">
-          <p class="eyebrow">Galerie</p>
-          <h2>Impressionen</h2>
+          <p class="eyebrow" data-i18n="galerie.eyebrow">Galerie</p>
+          <h2 data-i18n="galerie.title">Impressionen</h2>
         </div>
 
         <div
           class="gallery-filters"
           id="galleryFilters"
           role="tablist"
+          data-i18n-aria-label="galerie.filtersAria"
           aria-label="Galerie nach Bereich filtern"
         ></div>
         <div class="gallery-shell" id="galleryShell" aria-live="polite"></div>
 
         <form class="upload-panel" id="uploadForm">
-          <label for="mediaUpload">Eigene Bilder oder Videos testen</label>
+          <label for="mediaUpload" data-i18n="galerie.uploadLabel">Eigene Bilder oder Videos testen</label>
           <input id="mediaUpload" name="mediaUpload" type="file" accept="image/*,video/*" multiple>
-          <p class="form-hint">
+          <p class="form-hint" data-i18n-html="galerie.uploadHint">
             Prototyp: Vorschau nur im Browser. Für die Live-Website Fotos in <code>assets/</code> ablegen
             und in der Galerie verlinken.
           </p>
@@ -324,50 +359,50 @@
 
       <section id="preise" class="section section-muted section-has-bg" data-bg="assets/bg/bg-nordlichter.jpg">
         <div class="section-heading centered">
-          <p class="eyebrow">Preise &amp; Verfügbarkeit</p>
-          <h2>Ihr Aufenthalt</h2>
-          <p>
+          <p class="eyebrow" data-i18n="preise.eyebrow">Preise &amp; Verfügbarkeit</p>
+          <h2 data-i18n="preise.title">Ihr Aufenthalt</h2>
+          <p data-i18n="preise.intro">
             Unverbindliche Richtpreise in Euro (Stand Mai 2026). Saisonale Abweichungen möglich –
             genaue Beträge per Anfrage oder im Airbnb-Inserat.
           </p>
         </div>
         <div class="pricing-grid">
           <article class="price-card">
-            <h3>Nebensaison</h3>
-            <p class="price">ca. 286 € / Nacht</p>
-            <p>Für ruhige Reisezeiten und längere Aufenthalte.</p>
+            <h3 data-i18n="preise.card1Title">Nebensaison</h3>
+            <p class="price" data-i18n="preise.card1Price">ca. 286 € / Nacht</p>
+            <p data-i18n="preise.card1Text">Für ruhige Reisezeiten und längere Aufenthalte.</p>
           </article>
           <article class="price-card price-card--featured">
-            <h3>Nordlicht &amp; Winter</h3>
-            <p class="price">ca. 2.000 € / Woche</p>
-            <p class="price-note">ca. 286 € pro Nacht · 7 Nächte</p>
-            <p>Beliebte Reisezeit für Schnee, Nordlichter und Wintererlebnisse.</p>
+            <h3 data-i18n="preise.card2Title">Nordlicht &amp; Winter</h3>
+            <p class="price" data-i18n="preise.card2Price">ca. 2.000 € / Woche</p>
+            <p class="price-note" data-i18n="preise.card2Note">ca. 286 € pro Nacht · 7 Nächte</p>
+            <p data-i18n="preise.card2Text">Beliebte Reisezeit für Schnee, Nordlichter und Wintererlebnisse.</p>
           </article>
           <article class="price-card">
-            <h3>Sommer</h3>
-            <p class="price">ca. 286 € / Nacht</p>
-            <p>Ideal für Mitternachtssonne, Ausflüge und Natur.</p>
+            <h3 data-i18n="preise.card3Title">Sommer</h3>
+            <p class="price" data-i18n="preise.card3Price">ca. 286 € / Nacht</p>
+            <p data-i18n="preise.card3Text">Ideal für Mitternachtssonne, Ausflüge und Natur.</p>
           </article>
         </div>
         <div class="policy-notes section-narrow">
-          <h3 class="policy-title">Hinweise zur Buchung</h3>
+          <h3 class="policy-title" data-i18n="preise.policyTitle">Hinweise zur Buchung</h3>
           <ul>
-            <li>
+            <li data-i18n-html="preise.policy1">
               <strong>Mindestaufenthalt:</strong> 2 Nächte.
             </li>
-            <li>
+            <li data-i18n-html="preise.policy2">
               <strong>Check-in:</strong> ab 16:00 Uhr.
             </li>
-            <li>
+            <li data-i18n-html="preise.policy3">
               <strong>Check-out:</strong> 11:00 Uhr.
             </li>
-            <li data-todo="reinigung">
+            <li data-todo="reinigung" data-i18n-html="preise.policy4">
               <strong>Reinigungsgebühr:</strong> Auf Anfrage.
             </li>
-            <li data-todo="kinder">
+            <li data-todo="kinder" data-i18n-html="preise.policy5">
               <strong>Kinder:</strong> Regelung bitte vom Gastgeber ergänzen.
             </li>
-            <li data-todo="haustiere">
+            <li data-todo="haustiere" data-i18n-html="preise.policy6">
               <strong>Haustiere:</strong> Auf Anfrage.
             </li>
           </ul>
@@ -376,22 +411,22 @@
 
       <section id="bewertungen" class="section reviews section-has-bg" data-bg="assets/bg/bg-sauna.jpg">
         <div class="section-heading centered">
-          <p class="eyebrow">Gästestimmen</p>
-          <h2>Bewertungen</h2>
-          <p>Beispielzitate – später durch freigegebene Bewertungen aus Airbnb oder Direktbuchungen ersetzen.</p>
+          <p class="eyebrow" data-i18n="bewertungen.eyebrow">Gästestimmen</p>
+          <h2 data-i18n="bewertungen.title">Bewertungen</h2>
+          <p data-i18n="bewertungen.intro">Beispielzitate – später durch freigegebene Bewertungen aus Airbnb oder Direktbuchungen ersetzen.</p>
         </div>
         <div class="review-grid">
           <blockquote>
-            <p>„Ein ruhiger Ort, perfekt nach einem Tag voller Ausflüge rund um Kirkenes.“</p>
-            <cite>Beispielbewertung · <!-- TODO: Name/Datum --></cite>
+            <p data-i18n="bewertungen.q1">„Ein ruhiger Ort, perfekt nach einem Tag voller Ausflüge rund um Kirkenes.“</p>
+            <cite data-i18n="bewertungen.cite">Beispielbewertung ·</cite>
           </blockquote>
           <blockquote>
-            <p>„Sehr gute Basis für Nordlichter, Natur und entspannte Abende im Haus.“</p>
-            <cite>Beispielbewertung · <!-- TODO: Name/Datum --></cite>
+            <p data-i18n="bewertungen.q2">„Sehr gute Basis für Nordlichter, Natur und entspannte Abende im Haus.“</p>
+            <cite data-i18n="bewertungen.cite">Beispielbewertung ·</cite>
           </blockquote>
           <blockquote>
-            <p>„Unkomplizierte Kommunikation und alles Wichtige schnell erreichbar.“</p>
-            <cite>Beispielbewertung · <!-- TODO: Name/Datum --></cite>
+            <p data-i18n="bewertungen.q3">„Unkomplizierte Kommunikation und alles Wichtige schnell erreichbar.“</p>
+            <cite data-i18n="bewertungen.cite">Beispielbewertung ·</cite>
           </blockquote>
         </div>
       </section>
@@ -399,13 +434,13 @@
       <section id="lage" class="section section-location section-has-bg" data-bg="assets/bg/bg-landschaft.jpg">
         <div class="split">
           <div>
-            <p class="eyebrow">Anfahrt &amp; Lage</p>
-            <h2>Sør-Varanger bei Kirkenes</h2>
-            <p>
+            <p class="eyebrow" data-i18n="lage.eyebrow">Anfahrt &amp; Lage</p>
+            <h2 data-i18n="lage.title">Sør-Varanger bei Kirkenes</h2>
+            <p data-i18n="lage.body">
               Das Haus liegt in Sør-Varanger an der Vaggeveien 12, direkt am Wasser am Pasvikelv.
               Kirkenes mit Flughafen und Einkaufsmöglichkeiten ist per Auto gut erreichbar.
             </p>
-            <p class="location-address">
+            <p class="location-address" data-i18n-html="lage.address">
               <strong>Adresse:</strong> Vaggeveien 12, Sør-Varanger, Norwegen
             </p>
             <a
@@ -413,21 +448,23 @@
               href="https://www.google.com/maps/place/Vaggeveien+12,+9930+Neiden,+Norwegen/@69.8587475,29.3682319,20.62z/data=!4m15!1m8!3m7!1s0x45cb6b9c5e164b13:0xafce3054263cf78b!2s9930+Bug%C3%B8yfjord,+Norwegen!3b1!8m2!3d69.8681814!4d29.3456084!16s%2Fg%2F12z654tps!3m5!1s0x45cb6ba30b970e3d:0x18628f96b766bf3d!8m2!3d69.8587638!4d29.368333!16s%2Fg%2F11j1j00mg5?entry=ttu"
               target="_blank"
               rel="noreferrer"
+              data-i18n="lage.routeBtn"
             >
               Route auf Google Maps
             </a>
-            <div class="distance-grid" aria-label="Anfahrt und Umgebung">
+            <div class="distance-grid" data-i18n-aria-label="lage.distAria" aria-label="Anfahrt und Umgebung">
               <article>
                 <a
                   class="distance-map-link"
                   href="https://www.google.com/maps/place/Kirkenes,+Norwegen/@69.724171,30.0376775,14z/data=!3m1!4b1!4m6!3m5!1s0x45cb48ce189d4a0f:0x21475859b53b8dad!8m2!3d69.7269192!4d30.0450432!16zL20vMDE4ZDl3?entry=ttu"
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-i18n-aria-label="lage.dist1Aria"
                   aria-label="Kirkenes auf Google Maps öffnen (Einkaufsmöglichkeiten)"
                 >
                   <strong>Google Maps</strong>
                 </a>
-                <span>Kirkenes · Einkaufen</span>
+                <span data-i18n="lage.dist1Label">Kirkenes · Einkaufen</span>
               </article>
               <article>
                 <a
@@ -435,25 +472,27 @@
                   href="https://www.google.com/maps/place/Flughafen+Kirkenes/@69.7213545,29.8804527,17z/data=!3m1!4b1!4m6!3m5!1s0x45cb46070248a287:0x3158fbd5e1f4560a!8m2!3d69.7213527!4d29.883033!16zL20vMGZncTRf?entry=ttu"
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-i18n-aria-label="lage.dist2Aria"
                   aria-label="Flughafen Kirkenes auf Google Maps öffnen"
                 >
                   <strong>Google Maps</strong>
                 </a>
-                <span>Flughafen Kirkenes</span>
+                <span data-i18n="lage.dist2Label">Flughafen Kirkenes</span>
               </article>
               <article>
                 <strong data-todo="dist-natur">—</strong>
-                <span>Natur &amp; Ausflüge</span>
+                <span data-i18n="lage.dist3Label">Natur &amp; Ausflüge</span>
               </article>
               <article>
                 <strong data-todo="dist-grenze">—</strong>
-                <span>Grenzregion</span>
+                <span data-i18n="lage.dist4Label">Grenzregion</span>
               </article>
             </div>
           </div>
           <div class="map-embed-wrap">
             <iframe
               class="map-embed"
+              data-i18n-title="lage.mapTitle"
               title="Karte: Vaggeveien 12, Sør-Varanger, Norwegen"
               src="https://maps.google.com/maps?q=Vaggeveien+12,+9930+Neiden,+Norwegen&hl=de&z=15&output=embed"
               loading="lazy"
@@ -466,9 +505,9 @@
 
       <section id="anreise" class="section section-anreise">
         <div class="section-heading centered">
-          <p class="eyebrow">Anreise</p>
-          <h2>Mit dem Mietwagen frei unterwegs</h2>
-          <p>
+          <p class="eyebrow" data-i18n="anreise.eyebrow">Anreise</p>
+          <h2 data-i18n="anreise.title">Mit dem Mietwagen frei unterwegs</h2>
+          <p data-i18n="anreise.intro">
             Von Kirkenes nach Sør-Varanger – in unmittelbarer Nähe zur finnischen Grenze und perfekt
             als Basis für Ausflüge nach Finnland. Ein eigenes Auto macht Ihren Aufenthalt
             deutlich entspannter.
@@ -476,8 +515,8 @@
         </div>
 
         <div class="arrival-recommend section-narrow" role="note">
-          <p class="arrival-recommend-label">Unsere Empfehlung</p>
-          <p>
+          <p class="arrival-recommend-label" data-i18n="anreise.recommendLabel">Unsere Empfehlung</p>
+          <p data-i18n-html="anreise.recommend">
             <strong>Für dieses Ferienhaus empfehlen wir ausdrücklich, ein Auto zu mieten</strong> –
             idealerweise direkt am Flughafen Kirkenes (KKN / Høybuktmoen) bei Ankunft abholen
             und bei Abreise zurückgeben.
@@ -485,14 +524,14 @@
         </div>
 
         <div class="arrival-intro section-narrow">
-          <p>
+          <p data-i18n-html="anreise.intro1">
             Die Lodge liegt in Sør-Varanger am Pasvikelv – etwa <strong>45–60 Minuten mit dem Auto</strong>
             südlich von Kirkenes. Öffentliche Verbindungen sind dünn; mit dem Mietwagen sind Sie
             unabhängig: Nordlichter jagen, Fjorde und Tundra erkunden, in Kirkenes einkaufen,
             Tagesausflüge in die finnische Nachbarschaft und die Grenzregion Richtung Nordkap
             genießen – im Winter wie im Sommer, ohne auf Busfahrpläne zu warten.
           </p>
-          <p>
+          <p data-i18n-html="anreise.intro2">
             Besonders für <strong>Familien und Gruppen bis 10 Personen</strong> lohnt sich die
             Flexibilität: gemeinsam anreisen, Einkäufe transportieren, Ausflüge spontan planen.
             Am Flughafen Kirkenes stehen mehrere große Ketten und lokale Partner bereit – Abholung
@@ -500,8 +539,8 @@
           </p>
         </div>
 
-        <div class="provider-strip" aria-label="Mietwagen-Anbieter am Flughafen Kirkenes">
-          <p class="provider-strip-title">Am Flughafen KKN buchbar u. a. bei</p>
+        <div class="provider-strip" data-i18n-aria-label="anreise.providerAria" aria-label="Mietwagen-Anbieter am Flughafen Kirkenes">
+          <p class="provider-strip-title" data-i18n="anreise.providerTitle">Am Flughafen KKN buchbar u. a. bei</p>
           <ul class="provider-list">
             <li>Avis</li>
             <li>Hertz</li>
@@ -513,11 +552,12 @@
           </ul>
         </div>
 
-        <div class="car-rental-grid" aria-label="Beispiel-Fahrzeuge und Richtpreise">
+        <div class="car-rental-grid" data-i18n-aria-label="anreise.carGridAria" aria-label="Beispiel-Fahrzeuge und Richtpreise">
           <article class="car-card">
             <div class="car-card-visual">
               <img
                 src="assets/car-kompakt.jpg"
+                data-i18n-alt="anreise.car1Alt"
                 alt="MG4 Electric Kompaktwagen im Schnee, Norwegen"
                 width="800"
                 height="450"
@@ -526,20 +566,20 @@
               >
             </div>
             <div class="car-card-body">
-              <p class="car-category">Kompaktklasse</p>
-              <h3>Kleinwagen · z. B. Toyota Yaris</h3>
-              <p>
+              <p class="car-category" data-i18n="anreise.car1Cat">Kompaktklasse</p>
+              <h3 data-i18n="anreise.car1Title">Kleinwagen · z. B. Toyota Yaris</h3>
+              <p data-i18n="anreise.car1Text">
                 Sparsam für Paare oder kleine Familien – gut für Sommerstraßen und den Weg
                 Kirkenes ↔ Sør-Varanger.
               </p>
               <dl class="car-prices">
                 <div>
-                  <dt>ca. pro Tag</dt>
-                  <dd>ab 65 €</dd>
+                  <dt data-i18n="anreise.perDay">ca. pro Tag</dt>
+                  <dd data-i18n="anreise.car1Day">ab 65 €</dd>
                 </div>
                 <div>
-                  <dt>ca. pro Woche</dt>
-                  <dd>ab 365 €</dd>
+                  <dt data-i18n="anreise.perWeek">ca. pro Woche</dt>
+                  <dd data-i18n="anreise.car1Week">ab 365 €</dd>
                 </div>
               </dl>
               <a
@@ -547,6 +587,7 @@
                 href="https://www.budget.no/bilutleiestasjoner/norge/kirkenes"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-i18n="anreise.car1Link"
               >
                 Am Flughafen Kirkenes buchbar · Budget
               </a>
@@ -557,6 +598,7 @@
             <div class="car-card-visual">
               <img
                 src="assets/car-suv.jpg"
+                data-i18n-alt="anreise.car2Alt"
                 alt="SUV auf verschneiter Straße zwischen schneebedeckten Bäumen – Winterfahrt in Norwegen"
                 width="800"
                 height="533"
@@ -565,20 +607,20 @@
               >
             </div>
             <div class="car-card-body">
-              <p class="car-category">SUV / 4×4</p>
-              <h3>Geländetauglich · z. B. Toyota RAV4</h3>
-              <p>
+              <p class="car-category" data-i18n="anreise.car2Cat">SUV / 4×4</p>
+              <h3 data-i18n="anreise.car2Title">Geländetauglich · z. B. Toyota RAV4</h3>
+              <p data-i18n="anreise.car2Text">
                 Unsere Top-Empfehlung für Winter, Schnee und längere Touren in der Arktis –
                 mehr Komfort und Sicherheitsgefühl auf norwegischen Straßen.
               </p>
               <dl class="car-prices">
                 <div>
-                  <dt>ca. pro Tag</dt>
-                  <dd>ab 95 €</dd>
+                  <dt data-i18n="anreise.perDay">ca. pro Tag</dt>
+                  <dd data-i18n="anreise.car2Day">ab 95 €</dd>
                 </div>
                 <div>
-                  <dt>ca. pro Woche</dt>
-                  <dd>ab 565 €</dd>
+                  <dt data-i18n="anreise.perWeek">ca. pro Woche</dt>
+                  <dd data-i18n="anreise.car2Week">ab 565 €</dd>
                 </div>
               </dl>
               <a
@@ -586,6 +628,7 @@
                 href="https://www.hertz.no"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-i18n="anreise.car2Link"
               >
                 Am Flughafen Kirkenes buchbar · Hertz
               </a>
@@ -596,6 +639,7 @@
             <div class="car-card-visual">
               <img
                 src="assets/car-kombi.jpg"
+                data-i18n-alt="anreise.car3Alt"
                 alt="VW Passat Variant Kombi auf verschneiter Straße, Norwegen"
                 width="800"
                 height="450"
@@ -604,20 +648,20 @@
               >
             </div>
             <div class="car-card-body">
-              <p class="car-category">Kombi / Mittelklasse</p>
-              <h3>Stationswagen · z. B. VW Passat Variant</h3>
-              <p>
+              <p class="car-category" data-i18n="anreise.car3Cat">Kombi / Mittelklasse</p>
+              <h3 data-i18n="anreise.car3Title">Stationswagen · z. B. VW Passat Variant</h3>
+              <p data-i18n="anreise.car3Text">
                 Viel Kofferraum für Vorräte aus Kirkenes, Kindersitze und Gepäck – ideal für
                 Gruppen mit mehr Gepäck, ohne Minibus.
               </p>
               <dl class="car-prices">
                 <div>
-                  <dt>ca. pro Tag</dt>
-                  <dd>ab 83 €</dd>
+                  <dt data-i18n="anreise.perDay">ca. pro Tag</dt>
+                  <dd data-i18n="anreise.car3Day">ab 83 €</dd>
                 </div>
                 <div>
-                  <dt>ca. pro Woche</dt>
-                  <dd>ab 490 €</dd>
+                  <dt data-i18n="anreise.perWeek">ca. pro Woche</dt>
+                  <dd data-i18n="anreise.car3Week">ab 490 €</dd>
                 </div>
               </dl>
               <a
@@ -625,6 +669,7 @@
                 href="https://www.europcar.no"
                 target="_blank"
                 rel="noopener noreferrer"
+                data-i18n="anreise.car3Link"
               >
                 Am Flughafen Kirkenes buchbar · Europcar
               </a>
@@ -633,24 +678,24 @@
         </div>
 
         <div class="arrival-tips section-narrow">
-          <h3>Praktische Hinweise</h3>
+          <h3 data-i18n="anreise.tipsTitle">Praktische Hinweise</h3>
           <ul>
-            <li>
+            <li data-i18n-html="anreise.tip1">
               <strong>Flughafen:</strong> Kirkenes Airport Høybuktmoen (KKN) – Mietwagen-Schalter
               in der Ankunftshalle; Vergleichsportale: DiscoverCars, autoprio.no, momondo.no.
             </li>
-            <li>
+            <li data-i18n-html="anreise.tip2">
               <strong>Fahrt zur Lodge:</strong> ca. 45–60 Min. nach Sør-Varanger (Vaggeveien 12) –
               Route über E6/E105; im Winter Winterreifen/4×4 erwägen.
             </li>
-            <li>
+            <li data-i18n-html="anreise.tip3">
               <strong>Früh buchen:</strong> In der Nordlicht-Saison (Okt.–März) und im Sommer
               sind Fahrzeuge schnell ausgebucht – Reservierung einige Wochen im Voraus lohnt sich.
             </li>
           </ul>
         </div>
 
-        <p class="arrival-disclaimer section-narrow">
+        <p class="arrival-disclaimer section-narrow" data-i18n-html="anreise.disclaimer">
           Alle Preise sind <strong>unverbindliche Richtwerte in Euro</strong> (Schätzungen, als „ca.“
           gekennzeichnet) für 2025/2026 – umgerechnet aus norwegischen Angeboten mit Wechselkurs
           ca. <strong>1 EUR ≈ 11,5 NOK</strong> (Stand Mai 2026). Abhängig von Saison, Versicherung,
@@ -661,49 +706,63 @@
 
       <section id="buchung" class="section form-section">
         <div class="section-heading centered">
-          <p class="eyebrow">Buchung</p>
-          <h2>Verfügbarkeit anfragen</h2>
-          <p>
-            Unverbindliche Anfrage – im Prototyp ohne Versanddienst. Nach dem Absenden erscheint eine
-            lokale Bestätigung.
+          <p class="eyebrow" data-i18n="buchung.eyebrow">Buchung</p>
+          <h2 data-i18n="buchung.title">Verfügbarkeit anfragen</h2>
+          <p data-i18n="buchung.intro">
+            Unverbindliche Anfrage – wir melden uns persönlich bei Ihnen zurück. Nach dem Absenden
+            erhalten Sie eine Bestätigung.
           </p>
         </div>
         <form class="booking-form panel" id="bookingForm">
+          <input type="hidden" name="subject" value="Neue Buchungsanfrage – Arctic Lodge">
+          <input
+            type="checkbox"
+            name="botcheck"
+            class="hp-field"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+          >
           <div class="form-grid">
             <label>
-              Name
+              <span data-i18n="form.name">Name</span>
               <input type="text" name="name" autocomplete="name" required>
             </label>
             <label>
-              E-Mail
+              <span data-i18n="form.email">E-Mail</span>
               <input type="email" name="email" autocomplete="email" required>
             </label>
             <label>
-              Anreise
+              <span data-i18n="buchung.arrival">Anreise</span>
               <input type="date" name="arrival" required>
             </label>
             <label>
-              Abreise
+              <span data-i18n="buchung.departure">Abreise</span>
               <input type="date" name="departure" required>
             </label>
             <label>
-              Gäste
+              <span data-i18n="buchung.guests">Gäste</span>
               <input type="number" name="guests" min="1" max="10" value="2" required>
             </label>
             <label>
-              Anfrageart
+              <span data-i18n="buchung.requestType">Anfrageart</span>
               <select name="requestType">
-                <option>Buchungsanfrage</option>
-                <option>Termin für Rückruf</option>
-                <option>Allgemeine Frage</option>
+                <option data-i18n="buchung.opt1">Buchungsanfrage</option>
+                <option data-i18n="buchung.opt2">Termin für Rückruf</option>
+                <option data-i18n="buchung.opt3">Allgemeine Frage</option>
               </select>
             </label>
           </div>
           <label>
-            Nachricht
-            <textarea name="message" rows="5" placeholder="Wunschzeitraum, Fragen oder besondere Hinweise"></textarea>
+            <span data-i18n="form.message">Nachricht</span>
+            <textarea
+              name="message"
+              rows="5"
+              data-i18n-placeholder="buchung.messagePlaceholder"
+              placeholder="Wunschzeitraum, Fragen oder besondere Hinweise"
+            ></textarea>
           </label>
-          <button class="button primary" type="submit">Anfrage senden</button>
+          <button class="button primary" type="submit" data-i18n="buchung.submit">Anfrage senden</button>
           <p class="form-status" id="bookingStatus" role="status" aria-live="polite"></p>
         </form>
       </section>
@@ -711,16 +770,16 @@
       <section id="kontakt" class="section contact-section">
         <div class="split contact-split">
           <div>
-            <p class="eyebrow">Kontakt</p>
-            <h2>Persönlich erreichbar</h2>
-            <p>
-              Telefon, E-Mail oder WhatsApp können hier ergänzt werden. Für Vertrauen verweisen wir
-              zusätzlich auf das bestehende Airbnb-Inserat.
+            <p class="eyebrow" data-i18n="kontakt.eyebrow">Kontakt</p>
+            <h2 data-i18n="kontakt.title">Persönlich erreichbar</h2>
+            <p data-i18n="kontakt.intro">
+              Telefon, E-Mail oder WhatsApp folgen in Kürze. Für Vertrauen verweisen wir
+              zusätzlich auf das bestehende Airbnb-Inserat – oder schreiben Sie uns direkt über das Formular.
             </p>
             <ul class="contact-list">
-              <li data-todo="kontakt-email"><strong>E-Mail:</strong> Auf Anfrage</li>
-              <li data-todo="kontakt-telefon"><strong>Telefon:</strong> Auf Anfrage</li>
-              <li data-todo="kontakt-whatsapp"><strong>WhatsApp:</strong> Auf Anfrage</li>
+              <li data-todo="kontakt-email" data-i18n-html="kontakt.email"><strong>E-Mail:</strong> Auf Anfrage</li>
+              <li data-todo="kontakt-telefon" data-i18n-html="kontakt.phone"><strong>Telefon:</strong> Auf Anfrage</li>
+              <li data-todo="kontakt-whatsapp" data-i18n-html="kontakt.whatsapp"><strong>WhatsApp:</strong> Auf Anfrage</li>
             </ul>
             <div class="cta-actions">
               <a
@@ -728,30 +787,44 @@
                 href="https://www.airbnb.de/rooms/1504531054030942935"
                 target="_blank"
                 rel="noreferrer"
+                data-i18n="kontakt.airbnbBtn"
               >
                 Airbnb-Inserat öffnen
               </a>
             </div>
           </div>
           <form class="contact-form panel" id="contactForm">
-            <h3>Nachricht senden</h3>
+            <input
+              type="checkbox"
+              name="botcheck"
+              class="hp-field"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            >
+            <h3 data-i18n="kontakt.formTitle">Nachricht senden</h3>
             <label>
-              Name
+              <span data-i18n="form.name">Name</span>
               <input type="text" name="contactName" autocomplete="name" required>
             </label>
             <label>
-              E-Mail
+              <span data-i18n="form.email">E-Mail</span>
               <input type="email" name="contactEmail" autocomplete="email" required>
             </label>
             <label>
-              Betreff
-              <input type="text" name="subject" placeholder="Frage zum Haus oder zur Lage">
+              <span data-i18n="kontakt.subject">Betreff</span>
+              <input
+                type="text"
+                name="subject"
+                data-i18n-placeholder="kontakt.subjectPlaceholder"
+                placeholder="Frage zum Haus oder zur Lage"
+              >
             </label>
             <label>
-              Nachricht
+              <span data-i18n="form.message">Nachricht</span>
               <textarea name="contactMessage" rows="5" required></textarea>
             </label>
-            <button class="button primary" type="submit">Nachricht vorbereiten</button>
+            <button class="button primary" type="submit" data-i18n="kontakt.submit">Nachricht senden</button>
             <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
           </form>
         </div>
@@ -761,23 +834,26 @@
     <footer class="site-footer">
       <div class="footer-inner">
         <div>
-          <p class="footer-brand">Lodge in der Arktis</p>
-          <p>Vaggeveien 12 · Sør-Varanger, Norwegen</p>
-          <p>Check-in ab 16:00 Uhr · Check-out um 11:00 Uhr</p>
+          <p class="footer-brand" data-i18n="brand">Arctic Lodge</p>
+          <p data-i18n="footer.address">Vaggeveien 12 · Sør-Varanger, Norwegen</p>
+          <p data-i18n="footer.checkinout">Check-in ab 16:00 Uhr · Check-out um 11:00 Uhr</p>
         </div>
-        <nav class="footer-nav" aria-label="Footer">
-          <a href="#haus">Haus</a>
-          <a href="#anreise">Anreise</a>
-          <a href="#grundriss">Grundriss</a>
-          <a href="#galerie">Galerie</a>
-          <a href="#buchung">Anfragen</a>
-          <a href="#start">Nach oben</a>
+        <nav class="footer-nav" data-i18n-aria-label="footer.navAria" aria-label="Footer">
+          <a href="#haus" data-i18n="nav.haus">Haus</a>
+          <a href="#anreise" data-i18n="nav.anreise">Anreise</a>
+          <a href="#grundriss" data-i18n="nav.grundriss">Grundriss</a>
+          <a href="#galerie" data-i18n="nav.galerie">Galerie</a>
+          <a href="#buchung" data-i18n="nav.cta">Anfragen</a>
+          <a href="#start" data-i18n="footer.top">Nach oben</a>
         </nav>
       </div>
-      <p class="footer-copy">© 2026 Lodge in der Arktis · Prototyp für eine Vermietungs-Website</p>
+      <p class="footer-copy" data-i18n="footer.copy">© 2026 Arctic Lodge · Prototyp für eine Vermietungs-Website</p>
     </footer>
 
     <script src="assets/airbnb/gallery-data.js"></script>
+    <script src="i18n.js"></script>
+    <!-- EmailJS Browser-SDK v4 (automatische Bestätigungs-E-Mail an Anfragende) – vor script.js laden -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

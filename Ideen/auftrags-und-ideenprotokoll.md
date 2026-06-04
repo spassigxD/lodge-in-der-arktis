@@ -1,5 +1,80 @@
 # Auftrags- und Ideenprotokoll
 
+## 2026-06-04 - EmailJS aktiviert & verifiziert (Auto-Bestätigung DE/EN/NO)
+
+- Nutzer hat EmailJS-Konto erstellt und die drei Werte geliefert; in `script.js` eingetragen: `EMAILJS_PUBLIC_KEY = "Vtmt7cpivLBxCMd53"`, `EMAILJS_SERVICE_ID = "service_8n48mab"`, `EMAILJS_TEMPLATE_ID = "template_5gs51l8"` (öffentliche Client-IDs, dürfen im Repo stehen).
+- EmailJS-Template angelegt (HTML im Arctic-Lodge-Stil) mit Variablen `{{to_email}}` (To), `{{subject}}`, `{{message}}`, `{{from_name}}`; `white-space:pre-line` für korrekte Zeilenumbrüche aus dem lokalisierten Text.
+- **Verifiziert:** `emailjs.send(...)` mit den echten IDs liefert **Status 200 OK** (Key/Service/Template gültig, Template-Variablen akzeptiert). SDK lädt, `window.I18N.getLanguage()` liefert die aktive Sprache → Auto-Reply folgt DE/EN/NO. Web3Forms (Eigentümer-Mail) unverändert.
+- **Noch offen:** echter End-to-End-Test mit einer realen Empfänger-Adresse (nur der Nutzer hat Postfach-Zugriff). **Sicherheits-Tipp:** in EmailJS unter Account die „Allowed Origins" auf die spätere Domain (arcticlodge.net) beschränken, um Missbrauch des öffentlichen Keys zu verhindern. `CONTACT_EMAIL` (mailto-Fallback / reply_to) weiterhin optional zu setzen.
+
+## 2026-06-04 - Automatische Bestätigungs-E-Mail an Anfragende via EmailJS (mehrsprachig)
+
+- Nutzerwunsch: Zusätzlich zur bestehenden Owner-Benachrichtigung (Web3Forms, unverändert) soll der/die **Anfragende automatisch eine Bestätigungs-E-Mail** erhalten („Danke für Ihre Anfrage, wir melden uns bald") – und zwar in der **aktuell aktiven Sprache** der Website (DE/EN/NO) zum Zeitpunkt des Absendens. Die bestehende AJAX-UX (kein Reload, vorhandene On-Page-Erfolgs-/Fehlermeldung) bleibt erhalten.
+- **Entscheidung des Nutzers (steht fest):** Web3Forms bleibt **exakt wie bisher** für die Owner-Benachrichtigung. EmailJS kommt **zusätzlich** nur für die Auto-Bestätigung an die anfragende Person hinzu.
+- **Umsetzung:**
+  - **EmailJS Browser-SDK v4** in `index.html` per offizieller CDN eingebunden (`https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js`), geladen **vor** `script.js` (nach `i18n.js`).
+  - In `script.js` neben der Web3Forms-Config drei klar markierte **Platzhalter-Konstanten** ergänzt: `EMAILJS_PUBLIC_KEY`, `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID` (TODO: vom Nutzer mit echten Werten zu füllen). Neue Funktion `isEmailJsConfigured()` liefert `false`, solange noch ein Platzhalter steht.
+  - EmailJS wird per `emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY })` **nur** initialisiert, wenn konfiguriert **und** das SDK geladen ist.
+  - In `handleFormSubmit` wird **nach erfolgreichem Web3Forms-Versand** (`response.ok && result.success`) – falls konfiguriert und SDK vorhanden – eine **nicht-blockierende** Auto-Bestätigung via `emailjs.send(...)` ausgelöst. Sie ändert/blockiert die On-Page-Erfolgsmeldung nicht; Fehler werden gefangen und nur per `console.warn` geloggt (die Anfrage selbst ist bereits erfolgreich).
+  - `templateParams`: `to_email` (Anfragenden-E-Mail: `contactEmail` beim Kontakt-, `email` beim Buchungsformular), `subject` (lokalisierter Betreff), `message` (lokalisierter Text), `from_name` = „Arctic Lodge", `reply_to` (= Owner-/Kontakt-Adresse, falls gesetzt). Die Felder werden generisch aus dem jeweiligen Formular gelesen (Funktion behandelt beide Formulare).
+- **EmailJS-Template (vom Nutzer einzurichten)** muss die Variablen `{{to_email}}`, `{{subject}}`, `{{message}}` (sowie optional `{{from_name}}`, `reply_to`) verwenden; das „To"-Feld des Templates auf `{{to_email}}` setzen.
+- **Neue i18n-Schlüssel** (DE/EN/NO) in `i18n.js`: `autoreply.subject` und `autoreply.message`.
+  - DE Betreff: „Danke für Ihre Anfrage – Arctic Lodge"; Text: warme 2–3 Sätze, signiert „Ihr Arctic Lodge Team".
+  - EN/NO: natürliche Entsprechungen.
+- **Wo der Nutzer seine IDs einträgt:** in `script.js` die Konstanten `EMAILJS_PUBLIC_KEY`, `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID` (Platzhalter ersetzen).
+- **Unverändert:** Web3Forms-Owner-Mail, Honeypot, Lade-Status, lokalisierte On-Page-Erfolgs-/Fehlermeldung, Formular-Reset bei Erfolg, sowie der `mailto:`-Fallback, solange der Web3Forms-Key ein Platzhalter ist.
+- Verifikation lokal über `python3 -m http.server 8000` (Cache-Busting-Query). Ohne echte EmailJS-IDs ist der Auto-Reply-Pfad sicher übersprungen; Web3Forms funktioniert weiter. Kein Commit/Push; nur im Projektordner `Kirkenes Haus` gearbeitet.
+
+## 2026-06-04 - Kontakt-/Buchungsformular scharf geschaltet (Web3Forms)
+
+- Nutzerwunsch: Die Kontaktanfrage soll **tatsächlich funktionieren** (echter Versand, nicht nur Prototyp/mailto).
+- Umgesetzt: Der bereits eingebaute Web3Forms-Versand wurde mit dem vom Nutzer bereitgestellten **Access Key** aktiviert – in `script.js` Konstante `WEB3FORMS_ACCESS_KEY` (Platzhalter ersetzt). Der Key ist an die Empfänger-E-Mail des Nutzers gebunden (bei der Key-Erstellung auf web3forms.com festgelegt); er ist öffentlich und darf im Client-Code/Repo stehen.
+- Beide Formulare (`#contactForm` Kontakt, `#bookingForm` Buchung) senden per `fetch` an `https://api.web3forms.com/submit`; bei Erfolg lokalisierte Bestätigung + Reset, sonst Fehlermeldung. Honeypot `botcheck` aktiv.
+- **Verifikation (bestätigt):** Echte Test-Anfrage über das Kontaktformular im Browser abgeschickt → Erfolgsmeldung „Vielen Dank! Ihre Anfrage wurde gesendet …“ erschien und das Formular wurde geleert. **End-to-End bestätigt:** Die Test-E-Mail ist im Postfach des Nutzers angekommen (04.06.2026).
+- **Noch offen / optional:** `CONTACT_EMAIL` in `script.js` (nur für den mailto-Fallback, der bei gesetztem Key nicht mehr greift) steht noch auf Platzhalter; bei Bedarf auf die echte Adresse setzen. Sichtbare Kontaktdaten (E-Mail/Telefon/WhatsApp) im Kontaktbereich weiterhin „Auf Anfrage“ (i18n-Schlüssel `kontakt.email`/`kontakt.phone`/`kontakt.whatsapp`).
+
+## 2026-06-04 - Neues Hero-Bild: Nordlicht-Holzhaus
+
+- Nutzerwunsch: Das vom Nutzer per Chat bereitgestellte Foto (Holzhaus bei Nacht unter grünem Nordlicht/Aurora, schneebedecktes Dach, warme Lichterkette am Terrassengeländer, verschneiter Fjord und Berge im Hintergrund) als großes **Hero-Bild** oben auf der Seite verwenden – ersetzt die bisherige Holzterrasse mit Wasserblick.
+- **Quelle:** Chat-Anhang des Nutzers (verifiziert als Nordlicht-Holzhaus-Foto).
+- **Altes Hero gesichert:** bestehendes `assets/hero.jpg` (Terrasse/Wasser) nach `assets/hero-terrasse.jpg` kopiert, damit es nicht verloren geht (war nur als Hero in Verwendung).
+- **Konvertierung:** Quellbild per macOS `sips` als optimiertes JPEG (Qualität 85) nach `assets/hero.jpg` (überschrieben). Quellauflösung **720 × 540 px** liegt bereits unter der Projekt-Obergrenze von 2000 px (längste Kante) – daher kein Hochskalieren; finale `assets/hero.jpg` = **720 × 540 px** (~51 KB). Echte Pixelmaße per `sips -g pixelWidth -g pixelHeight` ausgelesen und als `width="720"` / `height="540"` am Hero-`<img>` in `index.html` gesetzt (vorher 1920×1280; vermeidet Layout-Shift).
+- **Pfade unverändert:** `src="assets/hero.jpg"` und `data-lightbox-src="assets/hero.jpg"` bleiben; das neue Bild wird automatisch übernommen.
+- **Cache-Fix / Umbenennung (04.06.2026):** Da der Dateiname identisch blieb, zeigten Browser weiter das alte (gecachte) Terrassen-Bild („Bild nicht sichtbar“). Lösung: neues Hero in `assets/hero-nordlicht.jpg` umbenannt und `src`/`data-lightbox-src` in `index.html` darauf umgestellt – erzwingt frischen Abruf bei allen Browsern und GitHub-Pages-Besuchern. `assets/hero-terrasse.jpg` bleibt als Backup des alten Heros.
+- **Beschreibungen aktualisiert:** literale Fallback-`aria-label`/`data-lightbox-caption` im HTML sowie i18n-Werte `hero.mediaAria` und `hero.lightboxCaption` in **DE/EN/NO** auf das Nordlicht-Motiv umgestellt. Vorschläge: DE „Arctic Lodge bei Nordlicht – Holzhaus im Schnee in Sør-Varanger“, EN „Arctic Lodge under the northern lights – timber cabin in the snow in Sør-Varanger“, NO „Arctic Lodge under nordlyset – tømmerhytte i snøen i Sør-Varanger“. Hero-Überschrift/Lead und unrelated Übersetzungen unverändert.
+- Verifikation lokal über `python3 -m http.server 8000`; kein Commit/Push. Nur im Projektordner `Kirkenes Haus` gearbeitet.
+
+## 2026-06-04 - Markenname „Arctic Lodge“, echter Formularversand & automatische Mehrsprachigkeit
+
+Drei zusammenhängende Aufträge in einem Durchgang umgesetzt (alle berühren `index.html` / `script.js`).
+
+### Aufgabe A – Markenname „Lodge in der Arktis“ → „Arctic Lodge“
+- Nutzerwunsch: sichtbarer Markenname auf „**Arctic Lodge**“ umbenennen.
+- Ersetzt in `index.html`: `<title>`, `.logo-mark`, Hero-`<h1>`, Hero-Lightbox `data-lightbox-caption`, `.footer-brand`, `.footer-copy`.
+- `README.md` und `assets/README.md`: Markenerwähnungen auf „Arctic Lodge“ aktualisiert.
+- **Bewusst unverändert:** Projektordner `Kirkenes Haus`, GitHub-Repo/Pages-Name `lodge-in-der-arktis`, Ortsnamen (Kirkenes, Sør-Varanger, Pasvikelv) sowie generische Wörter wie „die Lodge“ / „Savio Lodge“ in beschreibenden Texten. Historische Protokolleinträge bleiben erhalten (nur dieser neue Eintrag ergänzt).
+
+### Aufgabe B – Formulare versenden wirklich (Buchung + Kontakt)
+- Integration von **Web3Forms** (funktioniert auf statischen GitHub Pages ohne Backend). Beim Absenden `fetch`-POST an `https://api.web3forms.com/submit` mit `FormData` inkl. `access_key`.
+- Platzhalter-Konstante oben in `script.js`: `WEB3FORMS_ACCESS_KEY` (TODO: echten Key eintragen) und `CONTACT_EMAIL` (TODO: echte Adresse für den mailto-Fallback).
+- **Verhalten:** Ist der Key noch Platzhalter → eleganter Fallback auf vorausgefüllte `mailto:`-Mail + lokalisierter Hinweis. Mit echtem Key → echter Versand mit Lade-Status am Button, lokalisierter Erfolgs-/Fehlermeldung, Formular-Reset bei Erfolg.
+- **Spam-Schutz:** verstecktes Honeypot-Feld `botcheck` in beiden Formularen; `subject` und `from_name` für lesbare E-Mails.
+- Prototyp-Texte ersetzt: Buchungs-Intro und Kontakttext sagen nicht mehr „im Prototyp ohne Versanddienst“ – jetzt echte Anfrage. Airbnb-Link bleibt.
+- Kontaktliste (`.contact-list` E-Mail/Telefon/WhatsApp) bleibt „Auf Anfrage“ mit `data-todo`-Markern (echte Werte offen).
+
+### Aufgabe C – Automatische Sprachumschaltung nach Standort (i18n)
+- Neue Datei **`i18n.js`** (vor `script.js` eingebunden) mit Wörterbuch DE/EN/NO; Deutsch bleibt Quelle/Standard.
+- Alle sichtbaren Texte in `index.html` mit `data-i18n` (Textinhalt) bzw. `data-i18n-*` für Attribute (placeholder, aria-label, title, alt, content, Lightbox-Caption) ausgezeichnet; vollständige Übersetzungen DE/EN/NO für jede Sektion.
+- **Erkennungsreihenfolge:** (1) gespeicherte Wahl in `localStorage`; (2) IP-Geolokalisierung über `https://ipwho.is/` (Fallback `https://ipapi.co/json/`), Mapping NO→no, DE/AT/CH/LI→de, sonst→en (async, mit Timeout, gecacht); (3) `navigator.language`; finaler Fallback de.
+- **Sprachumschalter** (DE/EN/NO) im Header (`.site-header`), im Ziegelberg-Stil; aktualisiert die Seite live, setzt `document.documentElement.lang` und speichert die Wahl.
+- Dynamische JS-Strings ebenfalls lokalisiert: Galerie-Filter „Alle“ + Kategorien/Räume, Lightbox-`aria-label`s, Formular-Statusmeldungen, Galerie-Leermeldung, „vergrößern“-Label.
+
+### Offene Punkte (Nutzer)
+1. **Web3Forms Access Key** (`script.js`, Konstante `WEB3FORMS_ACCESS_KEY`) sowie echte Kontaktdaten (E-Mail für `CONTACT_EMAIL`/Kontaktliste, Telefon, WhatsApp).
+2. **Bestätigung des Sprachsets** (aktuell DE/EN/NO) – ggf. weitere Sprachen.
+
+- Verifikation lokal über `python3 -m http.server 8000`. Nur im Projektordner `Kirkenes Haus` gearbeitet; kein Commit/Push.
+
 ## 2026-05-30 - GitHub-Repository und GitHub Pages
 
 - Nutzerwunsch: Projekt als eigenes GitHub-Repo mit dauerhaftem Web-Zugriff (GitHub Pages).

@@ -163,6 +163,107 @@ code {
   cursor: pointer;
 }
 
+/* Header controls: language switcher + menu toggle */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.lang-switcher {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: transparent;
+}
+
+.lang-btn {
+  border: 0;
+  border-left: 1px solid var(--line);
+  padding: 0.4rem 0.6rem;
+  background: transparent;
+  color: var(--text-soft);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.lang-btn:first-child {
+  border-left: 0;
+}
+
+.lang-btn:hover,
+.lang-btn:focus-visible {
+  color: var(--text);
+}
+
+.lang-btn.is-active {
+  background: var(--accent);
+  color: var(--white);
+}
+
+/* Über dem Hero (Header noch transparent): helle Variante */
+.site-header:not(.is-scrolled) .lang-switcher {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(28, 26, 24, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+.site-header:not(.is-scrolled) .lang-btn {
+  border-left-color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.site-header:not(.is-scrolled) .lang-btn:hover,
+.site-header:not(.is-scrolled) .lang-btn:focus-visible {
+  color: var(--white);
+}
+
+.site-header:not(.is-scrolled) .lang-btn.is-active {
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--white);
+}
+
+/* Honeypot-Feld (Spamschutz): visuell und für Screenreader versteckt */
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Ladezustand der Absende-Buttons */
+.button.is-loading {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+@media (max-width: 768px) {
+  .header-controls {
+    gap: 0.45rem;
+  }
+
+  .logo-mark {
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+  }
+
+  .lang-btn {
+    padding: 0.35rem 0.45rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+}
+
 /* Hero */
 .hero {
   position: relative;
